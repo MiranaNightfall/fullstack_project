@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from "next/image";
 import styles from './stylepage.module.css'; 
 
 interface Painting {
@@ -58,7 +59,7 @@ const PaintingsPage = () => {
                             <td>{painting.name}</td>
                             <td>{painting.price}</td>
                             <td>{painting.date}</td>
-                            <td><img src={painting.image} alt={painting.name} className={styles.image} /></td>
+                            <td><Image src={painting.image} alt={painting.name} className={styles.image} /></td>
                             <td>
                                 <Link href={`/dashboard/blog`}>
                                     <button className={styles.editButton}>Edit</button>

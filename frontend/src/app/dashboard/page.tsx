@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { FaWhatsapp, FaEnvelope, FaGithub } from 'react-icons/fa';
 import Link from 'next/link';
@@ -114,7 +115,7 @@ const LandingPage = () => {
                         </div>
                     </div>
                     <div className="md:w-1/2">
-                        <img src="art4.png" alt="Ultrabook" className="w-auto h-auto rounded-lg shadow-lg" />
+                        <Image src="art4.png" alt="Ultrabook" className="w-auto h-auto rounded-lg shadow-lg" />
                     </div>
                 </div>
             </section>
@@ -124,7 +125,7 @@ const LandingPage = () => {
                     <h2 className="text-3xl md:text-4xl font-semibold text-center mb-10 text-black">Check our documentation here!</h2>
                     <div className="flex justify-center items-center relative overflow-visible">
                         <button onClick={prevSlide} className="absolute left-0 bg-white text-black p-2 md:p-6 rounded-full">❮</button>
-                        <img
+                        <Image
                             src={images[currentIndex]}
                             alt="Art"
                             className="w-full h-auto object-cover rounded-lg shadow-lg transition-transform duration-500 ease-in-out"
@@ -139,7 +140,7 @@ const LandingPage = () => {
                     <h2 className="text-3xl md:text-4xl font-semibold text-center mb-10 text-gray-900">Greatest Painting on this Century</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <div className="relative group bg-black p-4 md:p-6 shadow rounded">
-                            <img src="pbc.png" alt="pablo-picasso" className="w-full h-48 object-cover rounded mb-4 transition-transform duration-500" />
+                            <Image src="pbc.png" alt="pablo-picasso" className="w-full h-48 object-cover rounded mb-4 transition-transform duration-500" />
                             <div className="absolute inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                                 <div className="text-center text-white px-4 py-2">
                                     <h3 className="text-xl md:text-2xl font-bold mb-4">Girl before a Mirror</h3>
@@ -148,7 +149,7 @@ const LandingPage = () => {
                             </div>
                         </div>
                         <div className="relative group bg-black p-4 md:p-6 shadow rounded">
-                            <img src="art3.png" alt="van-gogh" className="w-full h-48 object-cover rounded mb-4 transition-transform duration-500" />
+                            <Image src="art3.png" alt="van-gogh" className="w-full h-48 object-cover rounded mb-4 transition-transform duration-500" />
                             <div className="absolute inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                                 <div className="text-center text-white px-4 py-2">
                                     <h3 className="text-xl md:text-2xl font-bold mb-4">The Starry Night</h3>
@@ -157,7 +158,7 @@ const LandingPage = () => {
                             </div>
                         </div>
                         <div className="relative group bg-black p-4 md:p-6 shadow rounded">
-                            <img src="dali.png" alt="salvador-dali" className="w-full h-48 object-cover rounded mb-4 transition-transform duration-500" />
+                            <Image src="dali.png" alt="salvador-dali" className="w-full h-48 object-cover rounded mb-4 transition-transform duration-500" />
                             <div className="absolute inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                                 <div className="text-center text-white px-4 py-2">
                                     <h3 className="text-xl md:text-2xl font-bold mb-4">The Disintegration of the Persistence of Memory</h3>
