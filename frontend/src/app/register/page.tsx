@@ -68,15 +68,13 @@ const RegisterPage = () => {
     };
 
     return (
-        <main className="flex min-h-screen items-center justify-center bg-gray-300">
+        <main className="flex min-h-screen items-center justify-center bg-gray-300 p-4">
             <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 login-box">
-                <h1 className="text-4xl font-bold mb-6 text-center text-violet-900">Create an account</h1>
+                <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center text-violet-900">Create an account</h1>
                 <p className="mb-4 text-center text-violet-800">Fill in the information below to create your account.</p>
-                
 
-                
                 {error && <p className="text-red-500 text-center">{error}</p>}
-                
+
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>

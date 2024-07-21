@@ -75,15 +75,6 @@ const LandingPage = () => {
                 .scroll-margin {
                     scroll-margin-top: 80px;
                 }
-            `}</style>
-
-            <style jsx>{`
-                .section-padding {
-                    padding-top: 80px;
-                }
-                .scroll-margin {
-                    scroll-margin-top: 80px;
-                }
                 .cursor-pointer {
                     cursor: pointer;
                 }
@@ -107,7 +98,7 @@ const LandingPage = () => {
             <section id="about" className="bg-gradient-to-r from-white to-cyan-600 py-20 min-h-screen flex items-center section-padding scroll-margin">
                 <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between text-center md:text-left">
                     <div className="md:w-1/2 mb-8 md:mb-0">
-                        <h1 className="text-5xl font-bold text-violet-950 leading-tight mb-4">Grab an Opportunity with ArtSelling!</h1>
+                        <h1 className="text-4xl md:text-5xl font-bold text-violet-950 leading-tight mb-4">Grab an Opportunity with ArtSelling!</h1>
                         <p className="text-lg text-violet-900 mb-8">
                             ArtSelling is a marketplace for those who wish to sell their creations. You can sell a variety of works, including both two-dimensional and three-dimensional pieces, based on your creativity. Additionally, you have the freedom to set your own prices because "every artist undoubtedly has their unique value."
                         </p>
@@ -127,46 +118,46 @@ const LandingPage = () => {
 
             <section id="documentation" className="bg-gray-300 py-12 section-padding scroll-margin">
                 <div className="w-full max-w-4xl mx-auto relative">
-                    <h2 className="text-4xl font-semibold text-center mb-10 text-black">Check our documentation here!</h2>
+                    <h2 className="text-3xl md:text-4xl font-semibold text-center mb-10 text-black">Check our documentation here!</h2>
                     <div className="flex justify-center items-center relative overflow-visible">
-                        <button onClick={prevSlide} className="absolute left-0 bg-white text-black p-6 rounded-full">❮</button>
+                        <button onClick={prevSlide} className="absolute left-0 bg-white text-black p-2 md:p-6 rounded-full">❮</button>
                         <img
                             src={images[currentIndex]}
                             alt="Art"
                             className="w-full h-auto object-cover rounded-lg shadow-lg transition-transform duration-500 ease-in-out"
                         />
-                        <button onClick={nextSlide} className="absolute right-0 bg-white text-black p-6 rounded-full">❯</button>
+                        <button onClick={nextSlide} className="absolute right-0 bg-white text-black p-2 md:p-6 rounded-full">❯</button>
                     </div>
                 </div>
             </section>
 
             <section id="artwork" className="py-20 bg-gradient-to-r from-cyan-600 to-white section-padding scroll-margin">
                 <div className="container mx-auto px-4">
-                    <h2 className="text-4xl font-semibold text-center mb-10 text-gray-900">Greatest Painting on this Century</h2>
+                    <h2 className="text-3xl md:text-4xl font-semibold text-center mb-10 text-gray-900">Greatest Painting on this Century</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <div className="relative group bg-black p-6 shadow rounded">
+                        <div className="relative group bg-black p-4 md:p-6 shadow rounded">
                             <img src="pbc.png" alt="pablo-picasso" className="w-full h-48 object-cover rounded mb-4 transition-transform duration-500" />
                             <div className="absolute inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                                 <div className="text-center text-white px-4 py-2">
-                                    <h3 className="text-2xl font-bold mb-4">Girl before a Mirror</h3>
+                                    <h3 className="text-xl md:text-2xl font-bold mb-4">Girl before a Mirror</h3>
                                     <p className="text-gray-300">Girl before a Mirror is an oil on canvas painting by Pablo Picasso, which he created in 1932. The painting is a portrait of Picasso's mistress and muse, Marie-Thérèse Walter, who is depicted standing in front of a mirror looking at her reflection.</p>
                                 </div>
                             </div>
                         </div>
-                        <div className="relative group bg-black p-6 shadow rounded">
+                        <div className="relative group bg-black p-4 md:p-6 shadow rounded">
                             <img src="art3.png" alt="van-gogh" className="w-full h-48 object-cover rounded mb-4 transition-transform duration-500" />
                             <div className="absolute inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                                 <div className="text-center text-white px-4 py-2">
-                                    <h3 className="text-2xl font-bold mb-4">The Starry Night</h3>
+                                    <h3 className="text-xl md:text-2xl font-bold mb-4">The Starry Night</h3>
                                     <p className="text-gray-300">The Starry Night is an oil-on-canvas painting by the Dutch Post-Impressionist painter Vincent van Gogh, painted in June 1889. It depicts the view from the east-facing window of his asylum room at Saint-Rémy-de-Provence, just before sunrise, with the addition of an imaginary village.</p>
                                 </div>
                             </div>
                         </div>
-                        <div className="relative group bg-black p-6 shadow rounded">
+                        <div className="relative group bg-black p-4 md:p-6 shadow rounded">
                             <img src="dali.png" alt="salvador-dali" className="w-full h-48 object-cover rounded mb-4 transition-transform duration-500" />
                             <div className="absolute inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                                 <div className="text-center text-white px-4 py-2">
-                                    <h3 className="text-2xl font-bold mb-4">The Disintegration of the Persistence of Memory</h3>
+                                    <h3 className="text-xl md:text-2xl font-bold mb-4">The Disintegration of the Persistence of Memory</h3>
                                     <p className="text-gray-300">The Disintegration of the Persistence of Memory is an oil on canvas painting by the Spanish surrealist Salvador Dalí. It is a 1954 re-creation of the artist's famous 1931 work The Persistence of Memory, and measures a diminutive 25.4 × 33 cm.</p>
                                 </div>
                             </div>
@@ -177,7 +168,7 @@ const LandingPage = () => {
 
             <section id="contacts" className="bg-gray-300 py-20 section-padding scroll-margin">
                 <div className="container mx-auto px-4">
-                    <h2 className="text-4xl font-semibold text-center mb-10 text-black">Contact Me!</h2>
+                    <h2 className="text-3xl md:text-4xl font-semibold text-center mb-10 text-black">Contact Me!</h2>
                     <div className="flex justify-center space-x-8 mb-10">
                         <a href="https://wa.me/081219357530" className="text-gray-900 hover:text-green-500" target="_blank" rel="noopener noreferrer">
                             <FaWhatsapp size={40} />

@@ -14,38 +14,38 @@ export default function LoginPage() {
     router.push('/register');
   };
 
-    const handleLoginClick = async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      try {
-          const response = await fetch("http://localhost:8000/api/login", {
-              method: "POST",
-              headers: {
-                  "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ username, password }),
-          });
+  const handleLoginClick = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:8000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
 
-          const data = await response.json();
+      const data = await response.json();
 
-          if (data.error) {
-              setError(data.error);
-          } else if (data.token) {
-              localStorage.setItem("token", data.token);
-              router.push('/dashboard');
-          } else {
-              setError("Unexpected response from server");
-          }
-      } catch (err) {
-          setError("An error occurred. Please try again.");
-          console.error("Login error:", err);
+      if (data.error) {
+        setError(data.error);
+      } else if (data.token) {
+        localStorage.setItem("token", data.token);
+        router.push('/dashboard');
+      } else {
+        setError("Unexpected response from server");
       }
+    } catch (err) {
+      setError("An error occurred. Please try again.");
+      console.error("Login error:", err);
+    }
   };
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gray-300">
-      <div className="flex w-[800px] h-[580px] bg-white rounded-lg shadow-lg overflow-hidden login-box">
-        <div className="w-1/2 p-8">
-          <h1 className="text-4xl font-bold mb-6 text-violet-900">Welcome to ArtSelling!</h1>
+    <main className="flex min-h-screen items-center justify-center bg-gray-300 p-4">
+      <div className="flex flex-col md:flex-row w-full max-w-4xl bg-white rounded-lg shadow-lg overflow-hidden login-box">
+        <div className="w-full md:w-1/2 p-8">
+          <h1 className="text-3xl md:text-4xl font-bold mb-6 text-violet-900">Welcome to ArtSelling!</h1>
           <p className="mb-4 text-violet-800">Do you want to sell your amazing work? ArtSelling is the perfect place for you!</p>
           {error && <p className="text-red-500 mb-4">{error}</p>}
 
@@ -89,11 +89,9 @@ export default function LoginPage() {
                 Register Here
               </span>
             </p>
-
           </form>
-
         </div>
-        <div className="w-1/2 relative">
+        <div className="w-full md:w-1/2 relative h-64 md:h-auto">
           <Image
             src="/image.png"
             alt="Background"
