@@ -24,22 +24,25 @@ const LandingPage = () => {
             setIsAuthenticated(true);
         }
 
-        const smoothScroll = (e) => {
+        const smoothScroll = (e: MouseEvent) => {
             e.preventDefault();
-            const targetId = e.target.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
-            }
-        };
-
-        const links = document.querySelectorAll('.smooth-scroll');
-        links.forEach(link => {
-            link.addEventListener('click', smoothScroll);
-        });
-
-        return () => {
+            const target = e.currentTarget as HTMLAnchorElement;
+            const targetId = target.getAttribute('href');
+            if (targetId) {
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+                }
+            };
+            
+            const links = document.querySelectorAll<HTMLAnchorElement>('.smooth-scroll');
             links.forEach(link => {
+                link.addEventListener('click', smoothScroll);
+            });
+            
+            return () => {
+                links.forEach(link => {
                 link.removeEventListener('click', smoothScroll);
             });
         };
