@@ -13,7 +13,7 @@ const AddPaintingPage = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Here you would handle the form submission to add the painting
+ 
         router.push('/dashboard/blog');
     };
 

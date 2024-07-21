@@ -1,8 +1,8 @@
-"use client"; // Add this line to indicate that this is a client component
+"use client"; 
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import styles from './stylepage.module.css'; // Importing the CSS module
+import styles from './stylepage.module.css'; 
 
 interface Painting {
     id: number;

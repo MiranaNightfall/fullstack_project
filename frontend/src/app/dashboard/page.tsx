@@ -13,12 +13,15 @@ const images = [
 
 const LandingPage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (!token) {
             router.push('/');
+        } else {
+            setIsAuthenticated(true);
         }
 
         const smoothScroll = (e) => {
@@ -40,7 +43,11 @@ const LandingPage = () => {
                 link.removeEventListener('click', smoothScroll);
             });
         };
-    }, []);
+    }, [router]);
+
+    if (!isAuthenticated) {
+        return <div>Login first, please...</div>;
+    }
 
     const prevSlide = () => {
         const index = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
@@ -70,6 +77,18 @@ const LandingPage = () => {
                 }
             `}</style>
 
+            <style jsx>{`
+                .section-padding {
+                    padding-top: 80px;
+                }
+                .scroll-margin {
+                    scroll-margin-top: 80px;
+                }
+                .cursor-pointer {
+                    cursor: pointer;
+                }
+            `}</style>
+
             <header className="bg-violet-900 fixed top-0 left-0 w-full z-50">
                 <div className="container mx-auto px-4 py-6 flex justify-between items-center">
                     <h1 className="text-3xl font-bold text-white">ArtSelling</h1>
@@ -79,7 +98,7 @@ const LandingPage = () => {
                             <li><a href="#documentation" className="text-gray-300 hover:text-cyan-200 smooth-scroll">Documentation</a></li>
                             <li><a href="#artwork" className="text-gray-300 hover:text-cyan-200 smooth-scroll">Artwork</a></li>
                             <li><a href="#contacts" className="text-gray-300 hover:text-cyan-200 smooth-scroll">Contacts</a></li>
-                            <li><a onClick={handleLogout} className="text-gray-300 hover:text-cyan-200 smooth-scroll">Logout</a></li>
+                            <li><a onClick={handleLogout} className="text-gray-300 hover:text-cyan-200 smooth-scroll cursor-pointer">Logout</a></li>
                         </ul>
                     </nav>
                 </div>
