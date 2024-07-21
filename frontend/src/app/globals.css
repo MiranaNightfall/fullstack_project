@@ -47,7 +47,88 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Smooth transition for image slider */
 img {
   transition: transform 0.5s ease-in-out;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.classic-theme {
+  background-color: #f9f9f9;
+  color: #000;
+}
+
+.futuristic-theme {
+  background-color: #1d1d1d;
+  color: #fff;
+}
+
+h1 {
+  font-family: 'Arial', sans-serif;
+  margin-bottom: 20px;
+}
+
+button {
+  margin-right: 10px;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+}
+
+@keyframes slideInDown {
+  0% {
+      transform: translateY(-100%);
+      opacity: 0;
+  }
+  100% {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+.notification {
+  animation: slideInDown 0.5s ease-out;
+  position: fixed;
+  top: 4rem; /* Sesuaikan jarak dari atas jika perlu */
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(to right, #8b5cf6, #3b82f6, #9ca3af); /* Gradasi warna */
+  color: white;
+  padding: 1rem;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 50; /* Pastikan notifikasi muncul di atas elemen lainnya */
 }

@@ -1,0 +1,128 @@
+/* Full viewport height and width */
+.container {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5; /* Light gray background */
+    color: #333; /* Dark gray text */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Full width */
+    height: 100vh; /* Full viewport height */
+    box-sizing: border-box; /* Include padding in height */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header styling */
+.header {
+    background-color: #4a2c77; /* Violet color */
+    padding: 10px 0;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Title styling */
+.title {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    margin: 0;
+}
+
+/* Button group styling */
+.buttonGroup {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Back button styling */
+.backButton {
+    background-color: #b0bec5; /* Gray color */
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.backButton:hover {
+    background-color: #90a4ae; /* Darker gray for hover effect */
+}
+
+/* Add button styling */
+.addButton {
+    background-color: #00bcd4; /* Cyan color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.addButton:hover {
+    background-color: #0097a7; /* Darker cyan for hover effect */
+}
+
+/* Table styling */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Table cells and headers */
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #4a2c77; /* Violet color */
+    color: white;
+}
+
+/* Table row stripes and hover effects */
+.table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table tr:hover {
+    background-color: #f1f1f1; /* Slightly darker gray for hover effect */
+}
+
+/* Image styling */
+.image {
+    width: 50px;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Edit button styling */
+.editButton {
+    background-color: #4a2c77; /* Violet color */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.editButton:hover {
+    background-color: #3e1f5f; /* Darker violet for hover effect */
+}
+
+/* Delete button styling */
+.deleteButton {
+    background-color: #e57373; /* Light red for delete */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.deleteButton:hover {
+    background-color: #c62828; /* Darker red for hover effect */
+}

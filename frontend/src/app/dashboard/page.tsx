@@ -1,7 +1,9 @@
-// src/app/landing/page.tsx
-"use client"; // Add this line to indicate that this is a client component
+"use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { FaWhatsapp, FaEnvelope, FaGithub } from 'react-icons/fa';
+import Link from 'next/link';
 
 const images = [
     'art.png',
@@ -11,6 +13,34 @@ const images = [
 
 const LandingPage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const router = useRouter();
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            router.push('/');
+        }
+
+        const smoothScroll = (e) => {
+            e.preventDefault();
+            const targetId = e.target.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        };
+
+        const links = document.querySelectorAll('.smooth-scroll');
+        links.forEach(link => {
+            link.addEventListener('click', smoothScroll);
+        });
+
+        return () => {
+            links.forEach(link => {
+                link.removeEventListener('click', smoothScroll);
+            });
+        };
+    }, []);
 
     const prevSlide = () => {
         const index = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
@@ -24,58 +54,74 @@ const LandingPage = () => {
 
     const handleLogout = () => {
         if (window.confirm("Are you sure you want to logout?")) {
-            // Implement your logout logic here
-            window.location.href = ".."; // Redirect to the parent page or another page
+            localStorage.removeItem('token');
+            router.push('/');
         }
     };
 
     return (
         <div className="bg-gray-900 text-gray-300">
-            <header className="bg-violet-900">
+            <style jsx>{`
+                .section-padding {
+                    padding-top: 80px;
+                }
+                .scroll-margin {
+                    scroll-margin-top: 80px;
+                }
+            `}</style>
+
+            <header className="bg-violet-900 fixed top-0 left-0 w-full z-50">
                 <div className="container mx-auto px-4 py-6 flex justify-between items-center">
                     <h1 className="text-3xl font-bold text-white">ArtSelling</h1>
                     <nav>
                         <ul className="flex space-x-4">
-                            <li><a href="#start" className="text-gray-300 hover:text-cyan-200 smooth-scroll">Start</a></li>
+                            <li><a href="#about" className="text-gray-300 hover:text-cyan-200 smooth-scroll">About</a></li>
                             <li><a href="#documentation" className="text-gray-300 hover:text-cyan-200 smooth-scroll">Documentation</a></li>
                             <li><a href="#artwork" className="text-gray-300 hover:text-cyan-200 smooth-scroll">Artwork</a></li>
                             <li><a href="#contacts" className="text-gray-300 hover:text-cyan-200 smooth-scroll">Contacts</a></li>
-                            <li><button onClick={handleLogout} className="text-gray-300 hover:text-cyan-200 smooth-scroll">Logout</button></li>
+                            <li><a onClick={handleLogout} className="text-gray-300 hover:text-cyan-200 smooth-scroll">Logout</a></li>
                         </ul>
                     </nav>
                 </div>
             </header>
 
-            <section id="start" className="bg-white py-20">
-                <div className="flex flex-col justify-center items-center h-full text-center">
-                    <h1 className="text-4xl font-bold text-violet-950">Sell your art with ArtSelling</h1>
-                    <h2 className="mt-2"></h2>
-                    <h3 className="mt-2 mb-4 text-black text-lg">Hello, </h3>
-
-                    <div className="bg-gray-400 text-black mb-4 p-4 rounded-lg shadow-lg w-11/12 max-w-md text-center login-box">
-                        <h1 className="text-2xl font-bold mb-4">Start Your Journey</h1>
-                        <button className="p-2 w-full bg-violet-900 text-white rounded-md hover:bg-cyan-950">Get started</button>
-                        <p className="mt-4 text-sm">Try Shopify free for 14 days. No risk, and no credit card required.</p>
+            <section id="about" className="bg-gradient-to-r from-white to-cyan-600 py-20 min-h-screen flex items-center section-padding scroll-margin">
+                <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between text-center md:text-left">
+                    <div className="md:w-1/2 mb-8 md:mb-0">
+                        <h1 className="text-5xl font-bold text-violet-950 leading-tight mb-4">Grab an Opportunity with ArtSelling!</h1>
+                        <p className="text-lg text-violet-900 mb-8">
+                            ArtSelling is a marketplace for those who wish to sell their creations. You can sell a variety of works, including both two-dimensional and three-dimensional pieces, based on your creativity. Additionally, you have the freedom to set your own prices because "every artist undoubtedly has their unique value."
+                        </p>
+                        <div className="flex justify-center md:justify-start space-x-4">
+                            <Link href="/dashboard/blog">
+                                <button className="bg-pink-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-pink-700">
+                                    Join Now
+                                </button>
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="md:w-1/2">
+                        <img src="art4.png" alt="Ultrabook" className="w-auto h-auto rounded-lg shadow-lg" />
                     </div>
                 </div>
             </section>
 
-            <section id="documentation" className="bg-gray-300 py-12">
+            <section id="documentation" className="bg-gray-300 py-12 section-padding scroll-margin">
                 <div className="w-full max-w-4xl mx-auto relative">
-                <h2 className="text-4xl font-semibold text-center mb-10 text-black">Check our documentation here!</h2>
+                    <h2 className="text-4xl font-semibold text-center mb-10 text-black">Check our documentation here!</h2>
                     <div className="flex justify-center items-center relative overflow-visible">
                         <button onClick={prevSlide} className="absolute left-0 bg-white text-black p-6 rounded-full">❮</button>
                         <img
                             src={images[currentIndex]}
                             alt="Art"
-                            className="w-full rounded-lg shadow-lg transition-transform duration-500 ease-in-out"
+                            className="w-full h-auto object-cover rounded-lg shadow-lg transition-transform duration-500 ease-in-out"
                         />
                         <button onClick={nextSlide} className="absolute right-0 bg-white text-black p-6 rounded-full">❯</button>
                     </div>
                 </div>
             </section>
 
-            <section id="artwork" className="py-20 bg-white">
+            <section id="artwork" className="py-20 bg-gradient-to-r from-cyan-600 to-white section-padding scroll-margin">
                 <div className="container mx-auto px-4">
                     <h2 className="text-4xl font-semibold text-center mb-10 text-gray-900">Greatest Painting on this Century</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -101,8 +147,7 @@ const LandingPage = () => {
                             <img src="dali.png" alt="salvador-dali" className="w-full h-48 object-cover rounded mb-4 transition-transform duration-500" />
                             <div className="absolute inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                                 <div className="text-center text-white px-4 py-2">
-                                    <h3 className="text-2xl font-bold mb-4">
-                                    The Disintegration of the Persistence of Memory</h3>
+                                    <h3 className="text-2xl font-bold mb-4">The Disintegration of the Persistence of Memory</h3>
                                     <p className="text-gray-300">The Disintegration of the Persistence of Memory is an oil on canvas painting by the Spanish surrealist Salvador Dalí. It is a 1954 re-creation of the artist's famous 1931 work The Persistence of Memory, and measures a diminutive 25.4 × 33 cm.</p>
                                 </div>
                             </div>
@@ -111,28 +156,27 @@ const LandingPage = () => {
                 </div>
             </section>
 
-            <section id="contacts" className="bg-gray-300 py-20">
+            <section id="contacts" className="bg-gray-300 py-20 section-padding scroll-margin">
                 <div className="container mx-auto px-4">
                     <h2 className="text-4xl font-semibold text-center mb-10 text-black">Contact Me!</h2>
-                    <form id="contact-form" className="max-w-xl mx-auto">
-                        <div className="mb-4">
-                            <label htmlFor="name" className="block text-black">Name:</label>
-                            <input type="text" id="name" name="name" required className="w-full px-4 py-2 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 bg-gray-700 text-white" />
-                        </div>
-                        <div className="mb-4">
-                            <label htmlFor="email" className="block text-black">Email:</label>
-                            <input type="email" id="email" name="email" required className="w-full px-4 py-2 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 bg-gray-700 text-white" />
-                        </div>
-                        <div className="mb-4">
-                            <label htmlFor="message" className="block text-black">Message:</label>
-                            <textarea id="message" name="message" required className="w-full px-4 py-2 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 bg-gray-700 text-white"></textarea>
-                        </div>
-                        <button type="submit" className="w-full bg-yellow-900 text-white px-4 py-2 rounded-lg hover:bg-green-900">Send</button>
-                    </form>
+                    <div className="flex justify-center space-x-8 mb-10">
+                        <a href="https://wa.me/081219357530" className="text-gray-900 hover:text-green-500" target="_blank" rel="noopener noreferrer">
+                            <FaWhatsapp size={40} />
+                        </a>
+                        <a href="mailto:mirananightfall228@gmail.com" className="text-gray-900 hover:text-red-500" target="_blank" rel="noopener noreferrer">
+                            <FaEnvelope size={40} />
+                        </a>
+                        <a href="https://github.com/MiranaNightfall" className="text-gray-900 hover:text-blue-700" target="_blank" rel="noopener noreferrer">
+                            <FaGithub size={40} />
+                        </a>
+                    </div>
+                    <div className="max-w-xl mx-auto text-center">
+                        <p className="text-lg text-gray-700">I am a computer science student. A beginner that currently learning full stack development.</p>
+                    </div>
                 </div>
             </section>
 
-            <footer className="bg-violet-900 py-6 shadow ">
+            <footer className="bg-violet-900 py-6 shadow">
                 <div className="container mx-auto px-4 text-center">
                     <p className="text-gray-100">&copy; Muhammad Afwan Hafizh. All rights reserved.</p>
                 </div>

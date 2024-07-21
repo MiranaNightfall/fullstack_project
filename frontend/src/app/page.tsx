@@ -1,34 +1,64 @@
-"use client"; // Add this at the top of the file
+"use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation"; // Import useRouter
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-  const router = useRouter(); // Initialize useRouter
+  const router = useRouter();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleRegisterClick = () => {
-    router.push('/register'); // Navigate to the register page
+    router.push('/register');
   };
 
-  const handleLoginClick = () => {
-    router.push('/login');
-  }
+    const handleLoginClick = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      try {
+          const response = await fetch("http://localhost:8000/api/login", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ username, password }),
+          });
+
+          const data = await response.json();
+
+          if (data.error) {
+              setError(data.error);
+          } else if (data.token) {
+              localStorage.setItem("token", data.token);
+              router.push('/dashboard');
+          } else {
+              setError("Unexpected response from server");
+          }
+      } catch (err) {
+          setError("An error occurred. Please try again.");
+          console.error("Login error:", err);
+      }
+  };
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-gray-300">
-      <div className="flex w-[800px] h-[550px] bg-white rounded-lg shadow-lg overflow-hidden login-box">
+      <div className="flex w-[800px] h-[580px] bg-white rounded-lg shadow-lg overflow-hidden login-box">
         <div className="w-1/2 p-8">
           <h1 className="text-4xl font-bold mb-6 text-violet-900">Welcome to ArtSelling!</h1>
           <p className="mb-4 text-violet-800">Do you want to sell your amazing work? ArtSelling is the perfect place for you!</p>
-          <form className="space-y-4">
+          {error && <p className="text-red-500 mb-4">{error}</p>}
+
+          <form className="space-y-4" onSubmit={handleLoginClick}>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">Username or Email</label>
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username or Email</label>
               <input
-                type="email"
-                id="email"
+                type="text"
+                id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="you@example.com"
+                placeholder="Enter your username or email"
               />
             </div>
             <div>
@@ -36,41 +66,32 @@ export default function LoginPage() {
               <input
                 type="password"
                 id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 placeholder="••••••••"
               />
             </div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
-                />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">Remember me</label>
-              </div>
-              <div className="text-sm">
-                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</a>
-              </div>
-            </div>
+
             <button
-              type="button"
-              onClick={handleLoginClick}
-              className="w-full py-2 px-4 bg-indigo-600 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              type="submit"
+              className="w-full py-2 px-4 bg-indigo-600 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-cyan-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               Log in
             </button>
-            <p className="mt-4 text-sm text-gray-600">
-              Don't have an account? 
+
+            <p className="text-sm text-gray-600 flex items-center">
+              Don't have an account?
+              <span 
+                onClick={handleRegisterClick} 
+                className="ml-2 text-violet-800 cursor-pointer hover:text-violet-600"
+              >
+                Register Here
+              </span>
             </p>
-            <button
-              type="button"
-              onClick={handleRegisterClick} // Add onClick handler
-              className="w-full py-2 px-4 bg-white border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-4"
-            >
-              Register Here
-            </button>
+
           </form>
+
         </div>
         <div className="w-1/2 relative">
           <Image
